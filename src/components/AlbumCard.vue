@@ -27,7 +27,6 @@
           @click="toggleFavoriteStatus"
         >
           <v-icon
-            small
             :color="getFavoriteIconColor"
           >mdi-heart</v-icon>
         </v-btn>
