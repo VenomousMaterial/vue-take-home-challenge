@@ -6,8 +6,9 @@
     <v-card
       outlined
       shaped
-      max-width="375"
+      width="375"
       pa-2
+      class="transition-fast-in-fast-out v-card--reveal"
     >
 
       <div class="album-top-icons">
@@ -47,23 +48,43 @@
       </v-row>
 
       <v-card-text>
-        <div>Category: {{albumCategory}}</div>
         <div>Released: {{albumRelease}}</div>
-        <div>Songs: {{albumSongCount}}</div>
         <div>Price: {{albumCost}}</div>
       </v-card-text>
 
       <v-card-actions>
         <v-btn
-          color="purple"
-          @click="goToAlbum"
-          small
+          raised
+          color="teal"
+          @click="reveal = !reveal"
         >
-          See in the iTunes store
+          <span v-if="reveal"><v-icon>mdi-menu-down</v-icon> More Info</span>
+          <span v-if="!reveal"><v-icon>mdi-menu-up</v-icon> Less Info</span>
         </v-btn>
       </v-card-actions>
 
-      <div class="text-caption">{{albumRights}}</div>
+      <v-expand-transition>
+        <v-card
+          v-if="reveal"
+          class="transition-fast-in-fast-out v-card--reveal"
+        >
+          <v-card-text>
+            <div>Category: {{albumCategory}}</div>
+            <div>Songs: {{albumSongCount}}</div>
+            <div class="text-caption">{{albumRights}}</div>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn
+              color="teal"
+              @click="goToAlbum"
+              small
+            >
+              See in the iTunes store
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-expand-transition>
+
     </v-card>
   </v-flex>
 </template>
@@ -72,6 +93,10 @@
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'AlbumCard',
+
+  data: () => ({
+    reveal: false
+  }),
 
   props: {
     /**
