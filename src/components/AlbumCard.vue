@@ -58,8 +58,8 @@
           color="teal"
           @click="reveal = !reveal"
         >
-          <span v-if="reveal"><v-icon>mdi-menu-down</v-icon> More Info</span>
-          <span v-if="!reveal"><v-icon>mdi-menu-up</v-icon> Less Info</span>
+          <span v-if="!reveal"><v-icon>mdi-menu-down</v-icon> More Info</span>
+          <span v-if="reveal"><v-icon>mdi-menu-up</v-icon> Less Info</span>
         </v-btn>
       </v-card-actions>
 
