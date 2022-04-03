@@ -108,6 +108,7 @@
 import { mapActions, mapGetters } from 'vuex'
 
 import { sortOptions } from '@/constants/sortOptions'
+import { GITHUB_REPO_LOCATION } from '@/constants/urls'
 
 import AlbumCard from './components/AlbumCard'
 
@@ -162,7 +163,7 @@ export default {
     ]),
 
     openGithubWindow () {
-      window.open('https://github.com/VenomousMaterial/weecare-take-home-challenge')
+      window.open(GITHUB_REPO_LOCATION)
     }
   },
 
