@@ -7,6 +7,8 @@
     >
       <h1>WeeCare iTunes Albums Challenge</h1>
 
+      <span class="ml-4 text-caption">By Nick Harmon</span>
+
       <v-spacer></v-spacer>
 
       <v-btn
@@ -134,7 +136,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .app-background {
     background: lightblue;
     .weecare-banner {
@@ -143,5 +145,9 @@ export default {
     .top-part {
       max-height: 95px;
     }
+  }
+
+  .v-card__title {
+    word-break: break-word;
   }
 </style>
