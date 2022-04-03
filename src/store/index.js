@@ -93,6 +93,17 @@ export default new Vuex.Store({
       }
     },
 
+    updateSearch: (store, searchTerm) => {
+      if (searchTerm === null) {
+        store.commit('setAlbums', store.getters.unalteredAlbums)
+      } else {
+        const foundAlbum = store.getters.unalteredAlbums.find(album => {
+          return album['im:artist'].label === searchTerm || album['im:name'].label === searchTerm
+        })
+        store.commit('setAlbums', [foundAlbum])
+      }
+    },
+
     sortAlbumsByDefault: (store) => { store.commit('setAlbums', store.getters.unalteredAlbums) },
 
     sortAlbumsByLowPrice: (store) => {

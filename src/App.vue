@@ -9,17 +9,6 @@
 
       <v-spacer></v-spacer>
 
-      <v-select
-        :items="sortOptions"
-        label="Sort By"
-        outlined
-        dense
-        class="mt-7"
-        v-on:change="updateSort"
-      ></v-select>
-
-      <v-spacer></v-spacer>
-
       <v-btn
         @click="openGithubWindow"
         text
@@ -30,7 +19,32 @@
     </v-app-bar>
 
     <v-main>
-      <v-container fluid grid-list-xl class="app-background">
+      <v-container fluid grid-list-xl fill-height class="app-background">
+        <v-row class="top-part">
+
+          <v-select
+            :items="sortOptions"
+            label="Sort By"
+            outlined
+            dense
+            class="mt-7 mx-5"
+            v-on:change="updateSort"
+          ></v-select>
+
+          <v-autocomplete
+            clearable
+            dense
+            outlined
+            solo
+            cache-items
+            class="mt-7 mx-5"
+            background-color="transparent"
+            :items="searchList"
+            label="Search by Title or Artist"
+            v-on:change="updateSearch"
+          ></v-autocomplete>
+
+        </v-row>
         <v-layout wrap justify-space-around>
           <AlbumCard
             v-for="album in topAlbums"
@@ -69,24 +83,44 @@ export default {
 
   data () {
     return {
-      sortOptions: sortOptions
+      sortOptions: sortOptions,
+      searchInput: ''
     }
   },
 
   computed: {
-    ...mapGetters(['topAlbums', 'unalteredAlbums']),
+    ...mapGetters([
+      'topAlbums',
+      'unalteredAlbums',
+      'getArtists',
+      'getTitles'
+    ]),
+
     orderedAlbums () {
       const orderedAlbums = [...this.topAlbums]
       return orderedAlbums.sort((album1, album2) => {
         return album1['im:itemCount'].label - album2['im:itemCount'].label
       })
+    },
+
+    searchList () {
+      const artists = this.unalteredAlbums.map((album) => {
+        return album['im:artist'].label
+      })
+      const titles = this.unalteredAlbums.map((album) => {
+        return album['im:name'].label
+      })
+      const searchTerms = [...artists, ...titles]
+      searchTerms.sort()
+      return searchTerms
     }
   },
 
   methods: {
     ...mapActions([
       'init',
-      'updateSort'
+      'updateSort',
+      'updateSearch'
     ]),
 
     openGithubWindow () {
@@ -101,10 +135,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .weecare-banner {
-    background-image: linear-gradient(to right, rgb(21, 22, 91), rgb(52, 122, 121));
-  }
   .app-background {
     background: lightblue;
+    .weecare-banner {
+      background-image: linear-gradient(to right, rgb(21, 22, 91), rgb(52, 122, 121));
+    }
+    .top-part {
+      max-height: 95px;
+    }
   }
 </style>

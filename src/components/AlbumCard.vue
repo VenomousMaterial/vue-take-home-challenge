@@ -22,7 +22,7 @@
 
         <v-btn
           x-small
-          class="album-favorite-icon"
+          class="ma-1 album-favorite-icon"
           icon
           @click="toggleFavoriteStatus"
         >
@@ -75,7 +75,7 @@ export default {
 
   props: {
     /**
-     *
+     * The album title, displayed next to the album art
      */
     albumTitle: {
       type: String,
@@ -83,7 +83,7 @@ export default {
       default: null
     },
     /**
-     *
+     * The unique ID associated with each album
      */
     albumId: {
       type: String,
@@ -91,7 +91,7 @@ export default {
       default: null
     },
     /**
-     *
+     * Album artist, displayed underneath the album title in smaller text
      */
     albumArtist: {
       type: String,
@@ -99,7 +99,7 @@ export default {
       default: null
     },
     /**
-     *
+     * The album cover art, displayed in the top right of the card
      */
     albumImage: {
       type: Object,
@@ -107,14 +107,14 @@ export default {
       default: null
     },
     /**
-     *
+     * The category of music the album falls into
      */
     albumCategory: {
       type: String,
       default: null
     },
     /**
-     *
+     * The number of songs
      */
     albumSongCount: {
       type: String,
@@ -122,7 +122,7 @@ export default {
       default: null
     },
     /**
-     *
+     * The iTunes cost of the album, used in sorting
      */
     albumCost: {
       type: String,
@@ -130,7 +130,7 @@ export default {
       default: null
     },
     /**
-     *
+     * The date of release for the album
      */
     albumRelease: {
       type: String,
@@ -138,7 +138,7 @@ export default {
       default: null
     },
     /**
-     *
+     * Link to the iTunes store entry for the album
      */
     albumLink: {
       type: String,
@@ -146,7 +146,7 @@ export default {
       default: null
     },
     /**
-     *
+     * Copyright disclaimer for who owns the album rights
      */
     albumRights: {
       type: String,
@@ -154,7 +154,7 @@ export default {
       default: null
     },
     /**
-     *
+     * Index for the album within the original listing (to preserve its ranking)
      */
     albumIndex: {
       type: Number,
@@ -165,9 +165,11 @@ export default {
 
   computed: {
     ...mapGetters(['favoriteAlbums']),
+
     isFavorite () {
       return this.favoriteAlbums.includes(this.albumId)
     },
+
     getFavoriteIconColor () {
       return this.isFavorite ? 'red' : 'black'
     }
@@ -175,6 +177,7 @@ export default {
 
   methods: {
     ...mapActions(['addAlbumToFavorites', 'removeAlbumFromFavorites']),
+
     goToAlbum () {
       window.open(this.albumLink)
     },
