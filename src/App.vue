@@ -11,11 +11,31 @@
 
       <v-spacer></v-spacer>
 
+      <!-- <span
+        title="
+          features:
+          Favoriting (click the heart)
+          Test suite for javascript logic
+          written in Vue
+          Vuex for store management
+          Vuetify ui framework/animations
+          search and sort functionality
+        "
+      >
+        hover for features list
+        <v-icon>mdi-help</v-icon>
+      </span> -->
+      <v-btn
+        @click="showFeaturesList = true"
+      >Features List</v-btn>
+
+      <v-spacer></v-spacer>
+
       <v-btn
         @click="openGithubWindow"
         text
       >
-        <span class="mr-2">View Source Code</span>
+        <span class="mr-2">View GitHub Source Code</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
@@ -66,6 +86,21 @@
         </v-layout>
       </v-container>
     </v-main>
+    <v-snackbar
+      v-model="showFeaturesList"
+      timeout="10000"
+    >
+      <div>Features:</div>
+      <ul>
+        <li>Favorites save to local storage</li>
+        <div>(click the heart in the top right)</div>
+        <li>Search and sort functionality</li>
+        <li>Test suite for javascript logic</li>
+        <li>Written in Vue</li>
+        <li>Vuex for store management</li>
+        <li>Vuetify ui framework/animations</li>
+      </ul>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -86,7 +121,8 @@ export default {
   data () {
     return {
       sortOptions: sortOptions,
-      searchInput: ''
+      searchInput: '',
+      showFeaturesList: false
     }
   },
 
