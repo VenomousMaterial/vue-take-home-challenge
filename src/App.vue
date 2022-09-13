@@ -11,7 +11,7 @@
 
       <v-spacer></v-spacer>
 
-      <!-- <span
+      <span
         title="
           features:
           Favoriting (click the heart)
@@ -24,7 +24,7 @@
       >
         hover for features list
         <v-icon>mdi-help</v-icon>
-      </span> -->
+      </span>
       <v-btn
         @click="showFeaturesList = true"
       >Features List</v-btn>
