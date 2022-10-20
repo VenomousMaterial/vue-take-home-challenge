@@ -2,10 +2,10 @@
   <v-app class="app-background">
     <v-app-bar
       app
-      class="weecare-banner"
+      class="home-banner"
       dark
     >
-      <h1>WeeCare iTunes Albums Challenge</h1>
+      <h1>Vue iTunes Albums Challenge</h1>
 
       <span class="ml-4 text-caption">By Nick Harmon</span>
 
@@ -176,7 +176,7 @@ export default {
 <style lang="scss">
   .app-background {
     background: lightblue;
-    .weecare-banner {
+    .home-banner {
       background-image: linear-gradient(to right, rgb(21, 22, 91), rgb(52, 122, 121));
     }
     .top-part {

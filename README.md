@@ -1,4 +1,4 @@
-# weecare-take-home-challenge
+# vue-take-home-challenge
 
 ## Project setup
 ```
